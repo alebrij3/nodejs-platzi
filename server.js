@@ -8,6 +8,10 @@ app.use(bodyParser.json())
 app.use(router);
 
 router.get('/', function (req, res) {
+  console.log(req.headers);
+  res.header({
+    "Custom-Header": "This is my custom header",
+  })
   res.send('Hola desde get')
 })
 
