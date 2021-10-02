@@ -15,9 +15,9 @@ router.get('/', function (req, res) {
   res.send('Hola desde get')
 })
 
-router.delete('/', function(req, res) {
+router.post('/', function(req, res) {
   console.log(req.body)
-  res.send('Hola desde post')
+  res.status(201).send({ "body": "Creado correctamente" })
 })
 
 /* app.use('/', function(req, res) {
