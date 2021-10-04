@@ -1,29 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const response = require('./network/response')
-
-const router = express.Router();
+const router = require('./components/message/network')
 
 var app = express();
 
 app.use(bodyParser.json())
 app.use(router);
 app.use('/app', express.static('public'))
-
-router.get('/', function (req, res) {
-  console.log(req.headers);
-  res.header({
-    "Custom-Header": "This is my custom header",
-  })
-  // res.send('Hola desde get')
-  response.success(req, res, 'Lista de mensajes')
-})
-
-router.post('/', function(req, res) {
-  console.log(req.body)
-  res.status(201).send({ "body": "Creado correctamente" })
-})
 
 /* app.use('/', function(req, res) {
   res.send('hola')
