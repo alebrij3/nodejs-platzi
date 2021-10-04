@@ -15,7 +15,8 @@ router.get('/', function (req, res) {
   res.header({
     "Custom-Header": "This is my custom header",
   })
-  res.send('Hola desde get')
+  // res.send('Hola desde get')
+  response.success(req, res, 'Lista de mensajes')
 })
 
 router.post('/', function(req, res) {
