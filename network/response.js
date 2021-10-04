@@ -1,5 +1,5 @@
-exports.success = function(req, res, message, resStatus) {
-  res.status(resStatus || 200).send({
+exports.success = function(req, res, message, status) {
+  res.status(status || 200).send({
     "error": "",
     "message": message,
   })

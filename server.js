@@ -9,6 +9,7 @@ var app = express();
 
 app.use(bodyParser.json())
 app.use(router);
+app.use('/app', express.static('public'))
 
 router.get('/', function (req, res) {
   console.log(req.headers);
