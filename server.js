@@ -1,17 +1,15 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const router = require('./components/message/network')
+const router = require('./network/routes')
 
 var app = express();
 
 app.use(bodyParser.json())
-app.use(router);
+//app.use(router);
 app.use('/app', express.static('public'))
 
-/* app.use('/', function(req, res) {
-  res.send('hola')
-}) */
+router(app);
 
 app.listen(3000)
 console.log('la aplicación está escuchando en el puerto 3000')

@@ -4,7 +4,7 @@ const response = require('../../network/response')
 
 const router = express.Router();
 
-router.get('/message', function (req, res) {
+router.get('/', function (req, res) {
   console.log(req.headers);
   res.header({
     "Custom-Header": "This is my custom header",
@@ -13,7 +13,7 @@ router.get('/message', function (req, res) {
   response.success(req, res, 'Lista de mensajes')
 })
 
-router.post('/message', function(req, res) {
+router.post('/', function(req, res) {
   console.log(req.body)
   res.status(201).send({ "body": "Creado correctamente" })
 })
