@@ -1,10 +1,10 @@
 // const messageList = []
+require('dotenv').config();
 const db = require('mongoose');
 const Model = require('./model');
 
-//mongodb+srv://dbUser:dbUser1234@cluster0.oyr6m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-//db.Promise = global.Promise;
-db.connect('mongodb+srv://dbUser:dbUser1234@cluster0.oyr6m.mongodb.net/dbUser?retryWrites=true&w=majority', {
+db.Promise = global.Promise;
+db.connect(process.env.DB_URI, {
   useNewUrlParser: true,
 })
 
@@ -17,7 +17,9 @@ function addMessage(message) {
   myMessage.save()
 }
 
-function listMessages() {
+async function listMessages() {
+  // return messageList;
+  const messageList = await Model.find()
   return messageList;
 }
 
