@@ -35,8 +35,15 @@ async function updateMessageText(messageId, messageText) {
   return newMessage;
 }
 
+async function deleteMessage(id) {
+  return Model.deleteOne({
+    _id: id
+  })
+}
+
 module.exports = {
   add: addMessage,
   list: listMessages,
   updateMessageText: updateMessageText,
+  remove: deleteMessage,
 }
