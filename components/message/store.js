@@ -6,13 +6,22 @@ function addMessage(message) {
   myMessage.save()
 }
 
-async function listMessages(filterMessages) {
-  let filter = {}
-  if (filterMessages !== null) {
-    filter = { user: filterMessages }
-  }
-  const messageList = await Model.find(filter)
-  return messageList;
+function listMessages(filterMessages) {
+  return new Promise((resolve, reject) => {
+    let filter = {};
+    if (filterMessages !== null) {
+      filter = { user: filterMessages }
+    }
+    Model.find(filter)
+      .populate('user')
+      .exec((err, populatedData) => {
+        if (err) {
+          reject(err);
+        }
+
+        resolve(populatedData);
+      })
+  })
 }
 
 async function updateMessageText(messageId, messageText) {
