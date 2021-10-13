@@ -9,14 +9,14 @@ const controller = require('./controller')
 const router = express.Router();
 
 router.get('/', function (req, res) {
-  const filterMessages = req.query.user || null;
+  const filterMessages = req.query.chat || null;
   controller.getMessages(filterMessages)
     .then(messagesList => response.success(req, res, messagesList, 200))
     .catch(e => response.error(req, res, 'Unexpected error', 500, e))
 })
 
 router.post('/', function(req, res) {
-  controller.addMessage(req.body.user, req.body.message)
+  controller.addMessage(req.body.user, req.body.chat, req.body.message)
     .then(() => response.success(req, res, 'Mensaje creado correctamente', 201))
     .catch(e => response.error(req, res, 'Información inválida', 400, 'Faltan datos'))
   
