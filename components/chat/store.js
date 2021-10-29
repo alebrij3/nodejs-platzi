@@ -1,29 +1,30 @@
-const Model = require('./model');
+const Model = require("./model");
 
 function createChat(users) {
-    const myChat = new Model(users);
-    return myChat.save();
+  const myChat = new Model(users);
+  return myChat.save();
 }
 
 function listChats(userId) {
-    return new Promise((resolve, reject) => {
-        let filter = {};
-        if (userId !== null) {
-          filter = { user: userId }
+  return new Promise((resolve, reject) => {
+    let filter = {};
+    if (userId !== null) {
+      console.log(userId);
+      filter = { user: userId };
+    }
+    Model.find(filter)
+      .populate("users")
+      .exec((err, populatedData) => {
+        if (err) {
+          reject(err);
         }
-        Model.find(filter)
-          .populate('users')
-          .exec((err, populatedData) => {
-            if (err) {
-              reject(err);
-            }
-    
-            resolve(populatedData);
-          })
-      })
+
+        resolve(populatedData);
+      });
+  });
 }
 
 module.exports = {
-    create: createChat,
-    list: listChats,
-}
+  create: createChat,
+  list: listChats,
+};
